@@ -1,0 +1,51 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:        gpio
+# Required-Start:  $local_fs $syslog
+# Required-Stop:   $local_fs $syslog
+# Default-Start:   2 3 4 5
+# Default-Stop:
+# Short-Description: Start gpio
+### END INIT INFO
+
+DIR=$(cat /etc/remoteqth-path)
+C=1
+
+for GPIO in 66 67 69 68 45 44 23 26 47 46 27 65 22 61 30 60 31 50 48 51 3 2 49 15 14 115 20 7; do
+	echo $GPIO > /sys/class/gpio/export
+	chmod 666 /sys/class/gpio/gpio$GPIO/value
+	chmod 666 /sys/class/gpio/gpio$GPIO/direction
+	echo "out" > /sys/class/gpio/gpio$GPIO/direction
+	if ! [ -L $DIR/cfg/gpio$C ]; then echo --gpio$C-non-symlink-create; rm $DIR/cfg/gpio$C; /bin/ln -sf /sys/class/gpio/gpio$GPIO/value $DIR/cfg/gpio$C; fi
+	C=$((C+1))
+done
+
+
+HW=$(cat $DIR/cfg/server-hw)
+if [ $HW == 'PI' ]; then
+	REV=$(cat /sys/module/bcm2708/parameters/boardrev)
+        if [ $REV -gt 15 ]; then # model B+
+		NRGPIO='24'
+	else
+		NRGPIO='15'
+	fi
+elif [ $HW == 'BBB' ]; then
+	NRGPIO='28'
+fi
+
+DIR=$(cat /etc/remoteqth-path)
+# Restore the current gpio settings
+SAVE=$(cat $DIR/cfg/s-relay-save)
+if [ $SAVE -eq 1 ]; then
+	# echo SAVE
+	#NRGPIO='44'
+	for NR in `seq 1 $NRGPIO`; do
+		if [ -r $DIR/cfg/s-relay-$NR-save ]; then
+			SET=$(cat $DIR/cfg/s-relay-$NR-save)
+			if [ -w $DIR/cfg/gpio$NR ]; then
+				echo $SET > $DIR/cfg/gpio$NR
+			fi
+		fi
+	done
+fi
+exit 0

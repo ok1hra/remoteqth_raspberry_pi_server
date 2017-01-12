@@ -1,0 +1,6 @@
+AuthType Basic
+AuthName "RemoteQTH server"
+AuthUserFile /var/www/.htpasswd
+AuthGroupFile /dev/null
+Require valid-user
+Options -Indexes

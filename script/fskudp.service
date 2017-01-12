@@ -1,0 +1,23 @@
+# systemctl list-units #--all --full | grep ".device"
+# http://patrakov.blogspot.cz/2011/01/writing-systemd-service-files.html
+# systemctl daemon-reload
+# systemctl start cwudp.service
+# systemctl enable cwudp.service
+# 
+# 
+
+
+[Unit]
+Description=FSK to UDP via socat
+
+[Service]
+Type=simple
+    #forking
+PIDFile=/var/run/fskudp.pid
+ExecStart=/home/pi/remoteqth/script/fskudp.sh start
+ExecStop=/home/pi/remoteqth/script/fskudp.sh stop
+#Restart=on-abort
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

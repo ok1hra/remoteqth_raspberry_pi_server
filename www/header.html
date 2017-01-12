@@ -1,0 +1,12 @@
+<a href="http://remoteqth.com"><img src="rqs_head2.png" alt="RemoteQTH.com" title="" style="position: relative; top:15px; left:15px;"></a>
+<p style="position: absolute; top:27px; left:245px; font-size: 12pt; font-weight: bold; font-family: Tahoma, Helvetica, Arial, sans-serif; color: #cfcfcf">
+| <?php include '../cfg/s-login-call';?></p>
+<p style="position: relative; top:0px; right:50px; float: right; font-size: 12pt; font-weight: normal; font-family: Tahoma, Helvetica, Arial, sans-serif; color: #fff">
+<?
+$hw = rxfile2('../cfg/server-hw');
+if ( $hw == "PI" ) {
+	echo '<a href="http://www.raspberrypi.org/"><img src="rpi.png"></a> ';
+}elseif ( $hw == "BBB" ) {
+	echo '<a href="http://beagleboard.org/support/"><img src="bbb.png"></a> ';
+}
+include '../cfg/s-login-note';?></p>

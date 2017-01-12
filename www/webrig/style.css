@@ -1,0 +1,290 @@
+
+body{
+    font-size: 18pt;
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+    background-color: #f0f0f0;
+    /*background-color: #d4aa00;*/
+}
+
+img{
+    border: 0;
+}
+
+
+#validators{
+    margin-top: 2em;
+}
+
+
+#meterspan{
+    position: relative;
+    display: inline-block;
+    background-color: #d4aa00;
+    width: 350px;
+    height: 120px;
+}
+
+#modespan{
+    position: absolute;
+    top: 1px;
+    width: 100px;
+    color: #554400;
+}
+
+
+#meter{
+    position: absolute;
+    width: 350px;
+    height: 100px;
+    left: 0;
+    top: 10px;
+    z-index: 2;
+}
+
+#meterbkg{
+    /*border: solid 1px black;*/
+    position: absolute;
+    width: 350px;
+    height: 100px;
+    left: 0;
+    top: 10px;
+    z-index: 1;
+}
+
+img.digit{
+    padding: 2px;
+}
+
+#spanoptions{
+    position: absolute;
+    text-align: center;
+    left: 430px;
+    top: 10px;
+    color: #554400;
+}
+
+#divopts{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 1009;
+}
+
+table#options{
+    background-color: #e0e0e0;
+    border: black 2px solid;
+    padding: 2px;
+    margin-top: 1em;
+}
+
+td.right{
+    text-align: right;
+}
+
+tr.odd{
+    background-color: #c0c0c0;
+}
+
+select{
+    font-size: 18pt;
+    width: 120px;
+    /*width: 100%;*/
+}
+
+input{
+    font-size: 18pt;
+}
+
+button{
+    font-size: 18pt;
+}
+
+#tx{
+    margin-left: 10px;
+    background-color: #e0e0e0;
+    border: black 2px solid;
+    color: #e0e0e0;
+    font-size: 38pt;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    width: 61px;
+    height: 53px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    padding-top: 8px;
+}
+
+
+
+#rig{
+    background-color: #d4aa00;
+}
+
+
+#rig1{
+    position: relative;
+    display: inline-block;
+    background-color: #d4aa00;
+    width: 3em;
+    height: 120px;
+}
+#vfo{
+    position: absolute;
+    color: #554400;
+    top: 80px;
+}
+
+
+#rig2{
+    background-color: #d4aa00;
+    position: relative;
+    width: 500px;
+    height: 120px;
+    display: inline-block;
+}
+
+#qrg1span{
+    position: absolute;
+    top: 35px;
+    width: 500px;
+    color: #554400;
+}
+
+
+#rig3{
+    background-color: #d4aa00;
+    position: relative;
+    width: 260px;
+    height: 120px;
+    display: inline-block;
+    color: #554400;
+}
+
+#rig4{
+    background-color: #d4aa44;
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: inline-block;
+    color: #554400;
+}
+
+#help{
+    position: absolute;
+    top: 9px;
+    left: 0.2em;
+}
+
+#txtxt{
+    position: absolute;
+    left: 190px;
+    top: 8px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+#txled{
+    position: absolute;
+    left: 220px;
+    font-size: 25pt;
+    color: #008000;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+#rit{
+    position: absolute;
+    top: 59px;
+}
+
+#prit, #nrit{
+    position: absolute;
+    margin: 6px;
+    top: 10px;
+}
+
+#prit{
+    position: absolute;
+    border: 1px solid; 
+    border-radius: 5px;
+    color: #554400;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+#nrit{
+    position: absolute;
+    border: 1px solid #554400; 
+    border-radius: 5px;
+    background-color: #554400;
+    color: #d4aa00;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+select#mode{
+    background-color: #d4aa00;
+    background: #d4aa00;
+    color: #554400;
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+    font-size: 18pt;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    /*-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;*/
+    cursor: pointer;
+    /*border: 1px solid #554400; 
+    border-radius: 5px;*/
+    /*text-align: right;*/
+}
+
+option{
+    text-align: left;
+    border:none;
+}
+
+label{
+    position: relative;
+}
+
+label:before{
+    content: '▼';
+    background-color: #d4aa00;
+    position: absolute;
+    display: block;
+    right: -6px;
+    top: -2px;
+    width: 25px;
+    height: 34px;   
+    /*pointer-events: none;*/
+}
+
+#toucharea{
+    background-color: #BBAAAA;
+}
+
+/* mobile */
+@media (max-device-width: 800px) {
+/*@media (min-width: 1170px) {*/
+    textarea {
+        width: 90%; 
+        height: 100%;
+    }
+    
+    body{
+       padding: 0px;
+       margin: 0em;
+    }
+}

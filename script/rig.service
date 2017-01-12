@@ -1,0 +1,23 @@
+# systemctl list-units #--all --full | grep ".device"
+# http://patrakov.blogspot.cz/2011/01/writing-systemd-service-files.html
+# systemctl daemon-reload
+# systemctl start cwudp.service
+# systemctl enable cwudp.service
+# 
+# 
+
+
+[Unit]
+Description=rigctld
+
+[Service]
+Type=simple
+    #forking
+PIDFile=/var/run/rig.pid
+ExecStart=/home/pi/remoteqth/script/rig.sh start
+ExecStop=/home/pi/remoteqth/script/rig.sh stop
+#Restart=on-abort
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

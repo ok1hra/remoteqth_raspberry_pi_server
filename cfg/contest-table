@@ -1,0 +1,144 @@
+<tr>
+	<td>2015-03-21-TEST1</td>
+	<td>OK1OEA</td>
+	<td class="center">NR</td>
+	<td><a href="../log/2015-03-21-TEST1.txt">.txt</a></td>
+	<td><a href="../log/2015-03-21-TEST1.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2015-03-21-TEST1.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2015-03-21-TEST1&call=OK1OEA&exch=NR" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>
+<tr>
+	<td>2015-05-09-CQ-M</td>
+	<td>OK1OEA</td>
+	<td class="center">NR</td>
+	<td><a href="../log/2015-05-09-CQ-M.txt">.txt</a></td>
+	<td><a href="../log/2015-05-09-CQ-M.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2015-05-09-CQ-M.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2015-05-09-CQ-M&call=OK1OEA&exch=NR" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>
+<tr>
+	<td>2015-05-16-EA-CW</td>
+	<td>OK1OEA</td>
+	<td class="center">NR</td>
+	<td><a href="../log/2015-05-16-EA-CW.txt">.txt</a></td>
+	<td><a href="../log/2015-05-16-EA-CW.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2015-05-16-EA-CW.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2015-05-16-EA-CW&call=OK1OEA&exch=NR" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>
+<tr>
+	<td>2015-05-30-WPX</td>
+	<td>OK1OEA</td>
+	<td class="center">NR</td>
+	<td><a href="../log/2015-05-30-WPX.txt">.txt</a></td>
+	<td><a href="../log/2015-05-30-WPX.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2015-05-30-WPX.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2015-05-30-WPX&call=OK1OEA&exch=NR" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>
+<tr>
+	<td>2015-06-06-RSGB-FD</td>
+	<td>OK1OEA</td>
+	<td class="center">NR</td>
+	<td><a href="../log/2015-06-06-RSGB-FD.txt">.txt</a></td>
+	<td><a href="../log/2015-06-06-RSGB-FD.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2015-06-06-RSGB-FD.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2015-06-06-RSGB-FD&call=OK1OEA&exch=NR" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>
+<tr>
+	<td>2015-06-20-AA-CW</td>
+	<td>OK1OEA</td>
+	<td class="center">44</td>
+	<td><a href="../log/2015-06-20-AA-CW.txt">.txt</a></td>
+	<td><a href="../log/2015-06-20-AA-CW.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2015-06-20-AA-CW.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2015-06-20-AA-CW&call=OK1OEA&exch=44" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>
+<tr>
+	<td>2015-10-18-WAG</td>
+	<td>OK1OEA</td>
+	<td class="center">NR</td>
+	<td><a href="../log/2015-10-18-WAG.txt">.txt</a></td>
+	<td><a href="../log/2015-10-18-WAG.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2015-10-18-WAG.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2015-10-18-WAG&call=OK1OEA&exch=NR" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>
+<tr>
+	<td>2015-11-14-OK-OM-DX</td>
+	<td>OK1OEA</td>
+	<td class="center">FRK</td>
+	<td><a href="../log/2015-11-14-OK-OM-DX.txt">.txt</a></td>
+	<td><a href="../log/2015-11-14-OK-OM-DX.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2015-11-14-OK-OM-DX.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2015-11-14-OK-OM-DX&call=OK1OEA&exch=FRK" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>
+<tr>
+	<td>2015-11-28-CQ-WW-CW</td>
+	<td>OK1OEA</td>
+	<td class="center">15</td>
+	<td><a href="../log/2015-11-28-CQ-WW-CW.txt">.txt</a></td>
+	<td><a href="../log/2015-11-28-CQ-WW-CW.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2015-11-28-CQ-WW-CW.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2015-11-28-CQ-WW-CW&call=OK1OEA&exch=15" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>
+<tr>
+	<td>2015-12-12-ARRL-10M</td>
+	<td>OK1OEA</td>
+	<td class="center">NR</td>
+	<td><a href="../log/2015-12-12-ARRL-10M.txt">.txt</a></td>
+	<td><a href="../log/2015-12-12-ARRL-10M.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2015-12-12-ARRL-10M.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2015-12-12-ARRL-10M&call=OK1OEA&exch=NR" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>
+<tr>
+	<td>2016-01-23-BARTG-SPRINT</td>
+	<td>OK1OEA</td>
+	<td class="center">NR</td>
+	<td><a href="../log/2016-01-23-BARTG-SPRINT.txt">.txt</a></td>
+	<td><a href="../log/2016-01-23-BARTG-SPRINT.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2016-01-23-BARTG-SPRINT.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2016-01-23-BARTG-SPRINT&call=OK1OEA&exch=NR" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>
+<tr>
+	<td>2016-03-05-ARRL-SSB</td>
+	<td>OK1HRA</td>
+	<td class="center">KW</td>
+	<td><a href="../log/2016-03-05-ARRL-SSB.txt">.txt</a></td>
+	<td><a href="../log/2016-03-05-ARRL-SSB.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2016-03-05-ARRL-SSB.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2016-03-05-ARRL-SSB&call=OK1HRA&exch=KW" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>
+<tr>
+	<td>2016-03-19-RUSIAN-DX</td>
+	<td>OK1HRA</td>
+	<td class="center">NR</td>
+	<td><a href="../log/2016-03-19-RUSIAN-DX.txt">.txt</a></td>
+	<td><a href="../log/2016-03-19-RUSIAN-DX.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2016-03-19-RUSIAN-DX.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2016-03-19-RUSIAN-DX&call=OK1HRA&exch=NR" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>
+<tr>
+	<td>2016-04-02-EA-RTTY</td>
+	<td>OK1HRA</td>
+	<td class="center">NR</td>
+	<td><a href="../log/2016-04-02-EA-RTTY.txt">.txt</a></td>
+	<td><a href="../log/2016-04-02-EA-RTTY.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2016-04-02-EA-RTTY.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2016-04-02-EA-RTTY&call=OK1HRA&exch=NR" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>
+<tr>
+	<td>2016-05-28-WPX-CW</td>
+	<td>OK1HRA</td>
+	<td class="center">NR</td>
+	<td><a href="../log/2016-05-28-WPX-CW.txt">.txt</a></td>
+	<td><a href="../log/2016-05-28-WPX-CW.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2016-05-28-WPX-CW.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2016-05-28-WPX-CW&call=OK1HRA&exch=NR" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>
+<tr>
+	<td>2016-06-18-AA-CW</td>
+	<td>OK1HRA</td>
+	<td class="center">45</td>
+	<td><a href="../log/2016-06-18-AA-CW.txt">.txt</a></td>
+	<td><a href="../log/2016-06-18-AA-CW.adif">.adif</a></td>
+	<td class="center"><? echo qso("../log/2016-06-18-AA-CW.txt"); ?></td>
+	<td class="center"><a href="om.php?s=run&log=2016-06-18-AA-CW&call=OK1HRA&exch=45" onclick="window.open( this.href, this.href, 'width=550,height=300,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="SCL"><img src="split.png" alt="split window"></a></td>
+</tr>

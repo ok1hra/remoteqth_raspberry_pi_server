@@ -1,0 +1,134 @@
+<div id='cssmenu'>
+<ul>
+   <li class='active'><a href='index.php' onClick="return true"><span>Status</span></a></li>
+   <li class='has-sub'><a href='#' onClick="return true"><span>Control</span></a>
+      <ul>
+         <li><a href='c-relay.php'><span>Switch Relay</span></a></li>
+         <li><a href='c-sensors.php'><span>Sensors</span></a></li>
+         <li><a href='c-rot.php'><span>Rotators</span></a></li>
+         <li><a href='c-cw.php'><span>CW</span></a></li>
+         <li><a href='c-fsk.php'><span>RTTY</span></a></li>
+         <li><a href='c-rigctld.php'><span>WebRIG</span></a></li>
+         <li><a href='c-band-decoder.php'><span>Band decoder status</span></a></li>
+         <li><a href='s-contest-log.php'><span>simple WEB contest LOG</span></a></li>
+<?	 if ( $hw == "PI" ) { echo '<li class="last"><a href="c-webcam.php"><span>Webcam</span></a></li>'; } ?>
+      </ul>
+   </li>
+   <li class='has-sub'><a href='#' onClick="return true"><span>Settings</span></a>
+      <ul>
+         <li><a href='s-login.php'><span>Login</span></a></li>
+         <li><a href='s-net.php'><span>Network</span></a></li>
+         <li><a href='s-vpn.php'><span>VPN</span></a></li>
+         <li><a href='s-relay.php'><span>Web relay</span></a></li>
+         <li><a href='s-sensorstemp.php'><span>Temp sensors</span></a></li>
+         <li><a href='s-sensorsad.php'><span>A/D sensors</span></a></li>
+         <li><a href='s-rot.php'><span>Rotators</span></a></li>
+         <li><a href='s-rot2.php'><span>Server cluster</span></a></li>
+         <li><a href='s-cw.php'><span>CW</span></a></li>
+         <li><a href='s-fsk.php'><span>RTTY</span></a></li>
+         <li><a href='s-ser2net.php'><span>Ser2net</span></a></li>
+         <li><a href='s-rigctld.php'><span>Rigctld</span></a></li>
+         <li><a href='s-band-decoder.php'><span>Band decoder</span></a></li>
+<?	 if ( $hw == "PI" ) { echo '<li class="last"><a href="s-webcam.php"><span>Webcam</span></a></li>'; } ?>
+         <li class='last'><a href='s-backup.php'><span>Backup</span></a></li>
+      </ul>
+   </li>
+<? $debversion = rxfile2('/etc/debian_version');
+	if ($debversion <= 8 ){	// Jessie ?>
+	   <li class='has-sub'><a href='#' onClick="return true"><span>IOT</span></a>
+	      <ul>
+		 <li><a href='s-nodered.php'><span>node-red</span></a></li>
+		 <li><a href='s-mqtt.php'><span>mqtt</span></a></li>
+	      </ul>
+	   </li>
+<?}?>
+   <li class='last'><a href='stop.php' onClick="return true"><span>Shutdown</span></a></li>
+</ul>
+</div>
+<br>
+<div id='cssmenu'>
+<ul>
+   <li class='active'><a href="mob.php" onclick="window.open( this.href, this.href, 'width=320,height=600,left=0,top=0,menubar=no,location=no,status=no' ); return false;"  title="Control palete"><span>Control <img src="split.png" alt="split window"></span></a></li>
+</ul>
+
+
+<?
+$multtithrow = 0; 
+$multtithrowb = 0;
+
+gethw();
+if ( $hw == "PI" ) {
+	$rev = rpi2rev();
+//	if ($rev < 16) {  // B+ detection
+	if (preg_match('/00(02|03|0[456]|0[789]|0[def]|11)/', $rev)){
+		$nrgpio = '15';
+	}else{
+		$nrgpio = '24';
+	}
+	$alert = "<pre class=\"info\">Detecting RPI rev. $rev - <b>$nrgpio GPIO</b></pre>";
+}elseif ( $hw == "BBB" ) {
+	$nrgpio = '28';
+	$alert = "<pre class=\"info\">Detecting BeagleboneBlack <b>$nrgpio GPIO</b></pre>";
+}else 	{
+	$alert = "Detecting hardware \n$hw" ;
+	$nrgpio = '8';
+}
+for($rel=1; $rel<=$nrgpio; $rel++){
+	$switch[$rel] = rxfile2("../cfg/s-relay-sw-{$rel}");
+	if ($switch[$rel] == "1") { //multi throw?
+		$multtithrow++;
+	}
+}
+if ($multtithrow > "1") {
+//	echo '<ul><li class="last"><a href="c-relay-pi-ant.php"><img src="ant-sw-table.png"> Ant-<span style="color: #00f;">sw-1&#8594;</span></a></li></ul>';
+	echo '<ul><li class="last"><a href="c-relay-pi-ant.php" onclick="window.open( this.href, this.href, \'width=310,height=400,left=0,top=0,menubar=no,location=no,status=no\' ); return false;"  title="Relay\'s BANK-1"><img src="ant-sw-table.png"> Ant-<span style="color: #060;">sw-1&#8599;</span></a></li></ul>';
+}
+
+for($rel=1; $rel<=$nrgpio; $rel++){
+	$switchb[$rel] = rxfile2("../cfg/s-relay-swb-{$rel}");
+	if ($switchb[$rel] == "1") { //multi throw?
+		$multtithrowb++;
+	}
+}
+if ($multtithrowb > "1") {
+//	echo '<ul><li class="last"><a href="c-relay-pi-antb.php"><img src="ant-sw-table.png"> Ant-<span style="color: #00f;">sw-2&#8594;</span></a></li></ul>';
+	echo '<ul><li class="last"><a href="c-relay-pi-antb.php" onclick="window.open( this.href, this.href, \'width=310,height=400,left=0,top=0,menubar=no,location=no,status=no\' ); return false;"  title="Relay\'s BANK-2"><img src="ant-sw-table.png"> Ant-<span style="color: #00f;">sw-2&#8599;</span></a></li></ul>';
+
+}?>
+
+</div>
+<? $load = sys_getloadavg();
+echo '<div class="loadmenu">Load '.$load[0].' | '.$load[1].' | '.$load[2].'</div>'; ?>
+
+<div class='progress'>
+	<div class='prgtext'><?php diskspace('/'); echo 'SD card '.$dp.'%'; ?></div>
+	<?if ($dp >= 95) { $color = '#f00' ;}else { $color = '#ccc' ;}?>
+	<div class='prgbar' style="width: <?php echo $dp; ?>%; background: <? echo $color ;?>;"></div>
+	<div class='prginfo'>
+		<span style='float: left;'><?php echo "$du"; ?></span>
+		<span style='float: right;'><?php echo "$df"; ?></span>
+		<span style='clear: both;'></span>
+	</div>
+</div>
+<div class='progress'>
+	<div class='prgtext'><?php diskspace('/tmp'); echo '/tmp '.$dp.'%'; ?></div>
+	<?if ($dp >= 95) { $color = '#f00' ;}else { $color = '#ccc' ;}?>
+	<div class='prgbar' style="width: <?php echo $dp; ?>%; background: <? echo $color ;?>;"></div>
+	<div class='prginfo'>
+		<span style='float: left;'><?php echo "$du"; ?></span>
+		<span style='float: right;'><?php echo "$df"; ?></span>
+		<span style='clear: both;'></span>
+	</div>
+</div>
+<div class='progress'>
+	<div class='prgtext'><?php diskspace('/var/log'); echo '/var/log '.$dp.'%'; ?></div>
+	<?if ($dp >= 95) { $color = '#f00' ;}else { $color = '#ccc' ;}?>
+	<div class='prgbar' style="width: <?php echo $dp; ?>%; background: <? echo $color ;?>;"></div>
+	<div class='prginfo'>
+		<span style='float: left;'><?php echo "$du"; ?></span>
+		<span style='float: right;'><?php echo "$df"; ?></span>
+		<span style='clear: both;'></span>
+	</div>
+</div>
+
+<img src="debian.png" class="deb">

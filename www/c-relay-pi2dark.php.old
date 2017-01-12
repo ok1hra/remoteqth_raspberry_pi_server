@@ -1,0 +1,63 @@
+<form action="<?echo actualpage();?>" method="POST">
+<table border="0" cellspacing="0" cellpadding="0" style="margin-left: 0px; margin-top: 0px;">
+<?
+// definice barev
+$ON = '#66cc00';
+$OFF = '#666666';
+$saverelay = rxfile("../cfg/s-relay-save");
+
+// cyklus pro 15 sensoru
+for($rel=1; $rel<16; $rel++){
+	//for($rel = array(4, 17, 21, 22, 23, 24, 25); $rel<9; $rel++){
+	$valuex = file("../cfg/s-relay-$rel"); $value = $valuex[0];
+	if ( $value != "n/a" ) { $lines++ ?>
+	<tr>
+        <td class="td1"><?php echo $value ; ?></td>
+        <td class="td2" width="150px">
+		<input type="radio" name="<? echo "puntik$rel"; ?>" value="<? echo "OFF$rel"; ?>" onclick="this.form.submit();">OFF&nbsp;&nbsp;
+		<input type="radio" name="<? echo "puntik$rel"; ?>" value="<? echo "ON$rel"; ?>" onclick="this.form.submit();">ON
+		<? $zapnout = empty($_POST["puntik$rel"]) ? "" : $_POST["puntik$rel"];
+		//$zapnout = $_POST["puntik$rel"]; // stara definice bez nastaveni promenne kdyz neni puntik aktovovan
+		if ($zapnout=="OFF$rel") {
+			$myFile = "../cfg/gpio$rel"; $fh = fopen($myFile, 'w') or die("can't open file");
+				$stringData = "0"; fwrite($fh, $stringData); fclose($fh);
+			if ( $saverelay == "1" ) {
+				txfile("../cfg/s-relay-{$rel}-save", '0');
+			}
+		}
+		if ($zapnout=="ON$rel") {
+			$myFile = "../cfg/gpio$rel"; $fh = fopen($myFile, 'w') or die("can't open file");
+				$stringData = "1"; fwrite($fh, $stringData); fclose($fh);
+			if ( $saverelay == "1" ) {
+				txfile("../cfg/s-relay-{$rel}-save", '1');
+			}
+		}
+?>	</td><td class="td2">
+		<? //include "../cfg/gpio{$rel}";
+		$statusx = file("../cfg/gpio$rel"); $status= $statusx[0];
+		//$status = file_get_contents("/tmp/relay{$rel}");
+		settype($status, "integer");
+                                if ($status == "1") {
+                                        $color = $ON ;
+					$zobraz = "ON" ; }
+                                else {
+                                        $color = $OFF ;
+					$zobraz = "OFF" ; }
+                                echo "<span style=\"color: $color\">$zobraz</span>";
+				if ( $saverelay == "1" ) {
+					$save = rxfile("../cfg/s-relay-{$rel}-save");
+	                                echo "</td><td class=\"td2\"> <span style=\"color: #c00\">$save</span>";
+				}
+
+				//echo gettype($status), "\n";
+		?>
+	</td></tr>
+	<? }
+// konec cyklu
+} ?>
+</table>
+</form>
+<? if ( $saverelay == "1" ) {
+	echo '<p class="warn">Stored settings will be set after reboot.</p>';
+}?>
+
