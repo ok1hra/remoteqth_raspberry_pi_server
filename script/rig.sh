@@ -5,15 +5,23 @@ RIG=$(cat $DIR/cfg/s-rigctld-on)
 RIGMODEL=$(cat $DIR/cfg/s-rigctld-model)
 RIGBAUD=$(cat $DIR/cfg/s-rigctld-baud)
 RIGCIV=$(cat $DIR/cfg/s-rigctld-civ)
+RIGDEV=$(cat $DIR/cfg/s-rigctld-dev)
 
 PROGDIR="/usr/bin/"
 PROGNAME="rigctld"
 
+# Device
+if [ $RIGDEV == 2 ]; then
+	DEVICE="/dev/ttyAMA0"
+else
+	DEVICE="/dev/ttyUSB.rig"
+fi
+
 # Icom models
 if [ $RIGMODEL -gt 300 ] && [ $RIGMODEL -lt 500 ]; then
-	COMMAND="$PROGDIR$PROGNAME -m $RIGMODEL -r /dev/ttyUSB.rig -s $RIGBAUD -c 0x$RIGCIV"
+	COMMAND="$PROGDIR$PROGNAME -m $RIGMODEL -r $DEVICE -s $RIGBAUD -c 0x$RIGCIV"
 else
-	COMMAND="$PROGDIR$PROGNAME -m $RIGMODEL -r /dev/ttyUSB.rig -s $RIGBAUD"
+	COMMAND="$PROGDIR$PROGNAME -m $RIGMODEL -r $DEVICE -s $RIGBAUD"
 fi
 
 if [ $RIG == 1 ]; then

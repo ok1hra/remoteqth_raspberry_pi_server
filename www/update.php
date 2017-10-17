@@ -17,7 +17,7 @@ $logdate= date('Y-m-d_H:i') ; ?>
 	<p class="status1"><?
 	//vykonani tlacitka update, s kontrolou navratoveho kodu
 	$cesta = getcwd();
-	echo exec("sudo /usr/bin/rsync -rva --numeric-ids --delete --exclude='/cfg/' --exclude='/log/' --exclude='.htpasswd' rsync://remoteqth.com:55873/server/ $cesta/../ > ../log/$logdate-update.log 2>&1 && echo '<span style=\"color: #444\"> Update done...</span>' || echo '<span style=\"color: #ff0000\"> Update FAIL...</span>'");
+	echo exec("sudo /usr/bin/rsync -rva --numeric-ids --delete --exclude='/cfg/' --exclude='/log/' --exclude='.htpasswd' --exclude='.git' rsync://remoteqth.com:55873/server/ $cesta/../ > ../log/$logdate-update.log 2>&1 && echo '<span style=\"color: #444\"> Update done...</span>' || echo '<span style=\"color: #ff0000\"> Update FAIL...</span>'");
 	echo exec("sudo $cesta/../script/update.sh >> ../log/$logdate-update.log");
 	?>&nbsp;<input type="submit" name="update" value="back"><p>
 </form>

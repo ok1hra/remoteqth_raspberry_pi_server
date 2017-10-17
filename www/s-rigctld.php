@@ -83,6 +83,7 @@ if ( rxfile2("../cfg/s-rigctld-on") == "1" ) {
 	$devx = array(
 		'0' => 'exactly by IDs (recommended)',
 		'1' => 'by relative Device path',
+		'2' => 'RPI internal UART [ttyAMA0]',
 		);
 		if ( rxfile2("../cfg/s-rigctld-dev") == "0" ) {
 			$label = Html::el()->setHtml('<a href="s-usb.php" onclick="window.open( this.href, this.href,
@@ -93,6 +94,9 @@ if ( rxfile2("../cfg/s-rigctld-on") == "1" ) {
 			$label = Html::el()->setHtml('<a href="s-usb2.php" onclick="window.open( this.href, this.href,
 				\'width=400,height=300,left=0,top=0,menubar=no,location=no,status=no\' ); return false;"
 				title="i2c">Find USB by bus path <img src="split.png" alt="split window"></a>');
+		}
+		elseif ( rxfile2("../cfg/s-rigctld-dev") == "2" ) {
+			$label = Html::el()->setHtml('GPIO TXD [pin 14], RXD [pin 15]');
 		}else{$label = '';}
 		$form->addSelect('dev', 'Detect device:', $devx)
 			->setOption('description', $label)
@@ -126,6 +130,7 @@ if ( rxfile2("../cfg/s-rigctld-on") == "1" ) {
 				->setOption('description', $label2)
 				->addRule(Form::PATTERN, "Device name must be in format 'ttyUSB.#-#.(#|#:#).#'", 'ttyUSB\.[0-9]\-[0-9]\.([0-9]|[0-9]\-[0-9])\.[0-9]');
 		}
+
 	
 	// nacteni default (predchozich) hodnot
 	// jmena poli se naplni hodnotou pole
@@ -137,9 +142,10 @@ if ( rxfile2("../cfg/s-rigctld-on") == "1" ) {
 $form->addSubmit('submit', 'Apply');
 
 if ($form->isSuccess()) {
-	$warn = "For detection new USB2serial interface repluged your usb device or reboot.<br>
-	You can observe the result on the <a href=\"index.php\">Recognized USB devices.</a></p>";
-
+	if ( rxfile2("../cfg/s-rigctld-dev") < "2" ) {
+		$warn = "For detection new USB2serial interface repluged your usb device or reboot.<br>
+		You can observe the result on the <a href=\"index.php\">Recognized USB devices.</a></p>";
+	}
 	$values = $form->getValues();
 	// ulozeni promennych
 	txfile2("../cfg/s-rigctld-model", $values->model);
