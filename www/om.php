@@ -14,6 +14,8 @@ $call = $_GET['call'];
   see http://remoteqth.com/wiki/index.php?page=PHP+contest+Log
 
 	Changelog
+	2017-11 - show no QSO if check blank in SP mode
+		- add reverse CW (CWR)
 	2016-03 - fix show previous qso in SSB mode
 	2016-01 - add FSK mode
 	2015-11 - after press 'nr?' exchange do not clear
@@ -118,6 +120,9 @@ $call = $_GET['call'];
 	.check  {
 		color : #800;
 	}
+	.checkg  {
+		color : #080;
+	}
 	.gray  {
 		color : #888;
 		font-weight:bold;
@@ -215,7 +220,7 @@ function freq($ip) {
 	return round($mhz, 3);
 }
 function rst($mode) {
-	if ($mode == 'CW' || $mode == 'RTTY'){
+	if ($mode == 'CW' || $mode == 'CWR' || $mode == 'RTTY'){
 		$rst='599';
 	}elseif ($mode == 'LSB' || $mode == 'USB'){
 		$rst='59';
@@ -342,7 +347,7 @@ if ($mode == 'CW' || $mode == 'CWR' || $mode == 'LSB' || $mode == 'USB' || $mode
 		$af2 = '';
 	}elseif (isset($_POST['callr']) && !isset($_POST['wpm15']) && !isset($_POST['wpm20']) && !isset($_POST['wpm25']) && !isset($_POST['wpm28']) && !isset($_POST['wpm30']) && !isset($_POST['wpm32']) && !isset($_POST['wpm35']) && !isset($_POST['tune'])) {             // if press enter in field call
 		if (empty($callr) && empty($qsonrr)){  // if call and nr field clear, run CQ
-			if ($mode == 'CW' || $mode == 'RTTY'){            // CW only
+			if ($mode == 'CW' || $mode == 'CWR' || $mode == 'RTTY'){            // CW only
 				if ($conteststyle == 'run'){
 					udpsocket($IP, port(), $CQ );
 					$mhz = freq($rigip);
@@ -357,7 +362,7 @@ if ($mode == 'CW' || $mode == 'CWR' || $mode == 'LSB' || $mode == 'USB' || $mode
 			$af1 = 'autofocus="autofocus"';
 			$af2 = '';
 		}elseif (isset($callr) && empty($qsonrr)){ // if call writed and nr clear, run EXCH
-			if ($mode == 'CW' || $mode == 'RTTY'){
+			if ($mode == 'CW' || $mode == 'CWR' || $mode == 'RTTY'){
 				if ($conteststyle == 'run'){
 					udpsocket($IP, port(), $TXEXCH);
 				//	$search = preg_grep("/ $callr /", file("$logpath.txt"));  // Check call in log
@@ -375,7 +380,7 @@ if ($mode == 'CW' || $mode == 'CWR' || $mode == 'LSB' || $mode == 'USB' || $mode
 			$af1 = '';
 			$af2 = 'autofocus="autofocus"';
 		}elseif (isset($callr) && isset($qsonrr)){  // if call and nr writed, run TU
-			if ($mode == 'CW' || $mode == 'RTTY'){
+			if ($mode == 'CW' || $mode == 'CWR' || $mode == 'RTTY'){
 				if ($conteststyle == 'run'){
 					$callrtest = rxfile('/tmp/callr');
 					if ($callrtest == $callr){                            // if call not changed
@@ -413,7 +418,7 @@ if ($mode == 'CW' || $mode == 'CWR' || $mode == 'LSB' || $mode == 'USB' || $mode
 		echo '<a href="'.basename($_SERVER['PHP_SELF']).'?s=run&log='.$log.'&call='.$call.'&exch='.$exch.'" class="switch"><span>S&P</span><span class="onhover">RUN</span></a>';
 	}?>
 	<input style="display: none" type="submit" name='send' value="Send">	<!-- hidden button - use if press enter (without click any other button)-->  <?
-	if ($mode == 'CW'){?>
+	if ($mode == 'CW' || $mode == 'CWR'){?>
 		<span class="gray">WPM: </span>
 		<!-- <input type="submit" name="wpm15" value="15">
 		<input type="submit" name="wpm20" value="20"> -->
@@ -425,7 +430,7 @@ if ($mode == 'CW' || $mode == 'CWR' || $mode == 'LSB' || $mode == 'USB' || $mode
 		<!--<input type="submit" name="stop" value="STOP" class="wpm">-->
 	<?}?>
 		<input type="submit" name="tune" class="wpm" <?
-			if ($mode == 'CW'){
+			if ($mode == 'CW' || $mode == 'CWR'){
 				echo 'value="Tune">';
 			}else{
 				echo 'value="PTT">';
@@ -446,12 +451,12 @@ if ($mode == 'CW' || $mode == 'CWR' || $mode == 'LSB' || $mode == 'USB' || $mode
 			<p class="text2">Call  
 			<input type="text" <? echo $af1?> value="<? echo $preset?>" name="callr" id="Call" onblur="if (this.value == '') {this.value = '<? echo $preset?>';}" size="8" maxlength="30" autocomplete="off"/><?
 
-		if (($mode == 'CW' || $mode == 'RTTY')&& $conteststyle == 'run'){
+		if (($mode == 'CW' || $mode == 'CWR' || $mode == 'RTTY')&& $conteststyle == 'run'){
 			echo '<input type="submit" name="send" value="*?" class="qso">';
 		}
 			echo " Exch<input type=\"text\"$af2 value=\"$preset2\" name=\"qsonrr\" size=\"1\" maxlength=\"30\" autocomplete=\"off\">";
 
-		if ($mode == 'CW' || $mode == 'RTTY'){
+		if ($mode == 'CW' || $mode == 'CWR' || $mode == 'RTTY'){
 		if ($conteststyle == 'run'){
 			echo '<input type="submit" name="send" value="nr?" class="qso">';
 		}
@@ -465,11 +470,19 @@ if ($mode == 'CW' || $mode == 'CWR' || $mode == 'LSB' || $mode == 'USB' || $mode
 	}?>
 	</form>
 	</div><div id="obsah2">
-	<pre class="check"><?
+	<pre class="<?
 	if (isset($search)){
-		foreach($search as $value){                            // print array value
-		    echo $value;
+		if (count($search) ==0){
+			echo 'checkg">';
+			echo "$callr no QSO";
+		}else{
+			echo 'check">';
+			foreach($search as $value){                            // print array value
+			    echo $value;
+			}
 		}
+	}else{
+		echo '">' ;
 	}?></pre>
 	<pre><?$file = file("$logpath.txt");                               // viewing log reverse
 		$file = array_reverse($file);

@@ -37,6 +37,7 @@ if ( $hw == "PI" ) {
 for($rel=1; $rel<$nrgpio+1; $rel++){
 	$name[$rel] = rxfile2("../cfg/s-relay-$rel");
 	$switch[$rel] = rxfile2("../cfg/s-relay-sw-{$rel}");
+	$aof[$rel] = rxfile("../cfg/s-relay-aof-{$rel}");
 	if ( $name[$rel] != "n/a" ) { $lines++ ;
 		if ($ant==$rel) {
 			if ($switch[$rel] != "1") { //multi throw? = all OFF
@@ -62,6 +63,10 @@ for($rel=1; $rel<$nrgpio+1; $rel++){
 					txfile2("../cfg/gpio{$rel}", '0'); // actual gpio OFF
 				} else {
 					txfile2("../cfg/gpio{$rel}", '1'); // actual gpio ON
+					if ($aof[$rel] == "1") { // auto-off
+						sleep(1);
+						txfile("../cfg/gpio{$rel}", '0');
+					}
 				}
 			} else { // $rel ON
 				txfile2("../cfg/gpio{$rel}", '1');
@@ -74,6 +79,7 @@ for($rel=1; $rel<$nrgpio+1; $rel++){
 }
 
 for($rel=1; $rel<$nrgpio+1; $rel++){
+	$aof[$rel] = rxfile("../cfg/s-relay-aof-{$rel}");
 	if ( $name[$rel] != "n/a" ) {
 		$gpio = rxfile2("../cfg/gpio$rel");
 		settype($gpio, "integer");
@@ -87,15 +93,19 @@ for($rel=1; $rel<$nrgpio+1; $rel++){
 				if ($gpio == "1") { // ON?
 					echo 'style="background: #36f; color: #fa0;"' ;
 				}
-			echo '><div id="table"><div id="label">'.$name[$rel].'</div></div>' ;
+			echo '><div id="table"><div id="label">'.$name[$rel];
+				if ($aof[$rel] == "1") { // auto-off
+				echo '<span style="color: #000; font-size: small"><br>Auto-OFF</span>';
+				}
 			//echo "$nrant";
 			//echo '<b>'.$status[$rel].'</b>' ;
-			echo '</div></div></a>'."\n" ;
+			echo '</div></div></div></div></a>'."\n" ;
 		}
 	}
 } ?>
 
 </div></div>
+
 </body>
 <head>
 	<title>Antenna control</title>
