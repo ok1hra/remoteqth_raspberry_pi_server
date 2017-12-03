@@ -75,6 +75,11 @@ if [ $HW == 'PI' ]; then
 		#apt-get update
 		apt-get install socat -y
 	fi
+	if ! [ -r /usr/bin/telnet ]; then
+		echo '--install telnet'
+		#apt-get update
+		apt-get install telnet -y
+	fi
 elif [ $HW == 'BBB' ]; then
 	echo '--set GPIO-BBB'
 	if [ -r $DIR/script/gpio-bbb ]; then

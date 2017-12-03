@@ -50,7 +50,7 @@ else 	{
 }
 echo "<br>$info"; ?>
 
-<p class="next"><a href="c-rigctld.php"><img src="previous.png" alt="previous page"></a></p>
+<p class="next"><a href="c-rigctld.php"><img src="previous.png" alt="previous page"></a><a href="c-vna.php"><img src="next.png" alt="next page"></a></p>
 <!-- #################### /Obsah #################### -->
 </div>
 <div id="header"><?php include 'header.html';?></div>
