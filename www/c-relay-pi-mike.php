@@ -2,8 +2,27 @@
 <html>
 <body>
 
+<?php
+require 'function.php';
+require 'Nette/loader.php';
+use Nette\Forms\Form,
+Nette\Utils\Html;
+?>
+
+<!--------------------------------------------------------- sensors -->
+<? $pocettemp = rxfile('s-sensors-temps');
+$pocetadp = rxfile("s-sensors-ad");
+$sensors = $pocettemp + $pocetadp;
+//if ($sensors == "0") {
+//} else {
+echo '<div class="mob">';
+require 'c-sensors2dark.php';
+echo '</div>';
+//}
+?>
+
+
 <div class="splitwindow">
-	<? require 'function.php';?>
 <form action="<?echo actualpage();?>" method="POST">
 <div id="wrap">
 <?
@@ -147,7 +166,7 @@ a:link a:visited a:hover {
 	vertical-align: middle;
 }
 .innerContent {
-	font-size: 6em;
+	font-size: 4em;
 	position: absolute;
 	left: 3px;
 	right: 3px;
@@ -174,6 +193,32 @@ a:link a:visited a:hover {
 @media only screen and (max-width: 320px) {
    body { font-size: 25%; }
 }
+
+.graph {
+position: relative; /* IE is dumb */
+width: 100%;
+border: 1px solid #888;
+padding: 2px;
+margin: 0px 0px -1px 0px;
+border-radius: 4px;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+-khtml-border-radius: 4px;
+}
+.graph .bar {
+display: block;
+position: relative;
+background: #ddd;
+height: 1em;
+color: #000;
+line-height: 1em;
+text-align: left;
+padding: 1px 0px 1px 5px;
+font-family: Tahoma, Helvetica, Arial, sans-serif;
+}
+.graph .bar span { position: absolute; left: 1em; }
+
+
   </style>
 <script>
       function hideAddressBar()
